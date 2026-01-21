@@ -50,6 +50,13 @@ public class Main {
         }
 
         // o método equals() é utilizado para comparar o conteúdo da variável senha com a String "12345". Se as duas Strings forem iguais, a mensagem "Acesso autorizado!" será impressa
+
+        String nome = "Maria";
+        int idade = 30;
+        double valor = 55.9999;
+        System.out.println(String.format("Meu nome é %s, eu tenho %d anos e hoje gastei %.2f reais", nome, idade, valor));
+
+        // Uma das maneiras mais comuns de se formatar textos em Java é utilizando o método format(), da classe String.
     }
 
 }
