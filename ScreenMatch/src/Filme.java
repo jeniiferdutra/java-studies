@@ -2,8 +2,8 @@ public class Filme { // TODO FILME TEM UM NOME
     String nome;
     int anoDeLancamento;
     boolean incluidoNoPlano;
-    double somaDasAvaliacoes;
-    int totalDeAvaliacoes;
+    private double somaDasAvaliacoes; // outra classe n pode atribuir valores
+    private int totalDeAvaliacoes;
     int duracaoEmMinutos;
 
     // Este método É void. Ele apenas imprime algo na tela.
