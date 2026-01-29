@@ -1,19 +1,20 @@
+import br.com.alura.screenmatch.modelos.Filme;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Principal {
     public static void main(String[] args) {
 
         Filme meuFilme = new Filme();
-        meuFilme.nome = "Vanilla Sky";
-        meuFilme.anoDeLancamento = 2001;
-        meuFilme.duracaoEmMinutos = 180;
+        meuFilme.setNome("Vanilla Sky");
+        meuFilme.setAnoDeLancamento(2001);
+        meuFilme.setDuracaoEmMinutos(180);
 
         meuFilme.exibeFichaTecnica();
         meuFilme.avalia(5);
         meuFilme.avalia(8);
         meuFilme.avalia(10);
-        System.out.println("Soma das avaliacoes: " + meuFilme.somaDasAvaliacoes);
-        System.out.println("Total de avaliacoes: " + meuFilme.totalDeAvaliacoes);
+        System.out.println("Total de avaliacoes: " + meuFilme.getTotalDeAvaliacoes());
         System.out.println("Média de avaliacoes: " + meuFilme.pegaMedia());
 
         Calculadora calculadora = new Calculadora();
