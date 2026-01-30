@@ -1,4 +1,5 @@
 import br.com.alura.screenmatch.modelos.Filme;
+import br.com.alura.screenmatch.modelos.Serie;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -37,5 +38,13 @@ public class Principal {
         System.out.println("Soma das avaliacoes: " + musica.somaAvaliacao);
         System.out.println("Total de avaliacoes: " + musica.numAvaliacoes);
         System.out.println("Média de avaliacoes: " + musica.calculaMedia());
+
+        Serie lost = new Serie();
+        lost.setNome("Lost");
+        lost.setAnoDeLancamento(2001);
+        lost.exibeFichaTecnica();
+        lost.setTemporadas(7);
+        lost.setEpisodiosPorTemporada(21);
+
     }
 }
