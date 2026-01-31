@@ -1,3 +1,4 @@
+import br.com.alura.screenmatch.calculos.CalculadoraDeTempo;
 import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
 
@@ -10,6 +11,7 @@ public class Principal {
         meuFilme.setNome("Vanilla Sky");
         meuFilme.setAnoDeLancamento(2001);
         meuFilme.setDuracaoEmMinutos(180);
+        System.out.println("Durarçao do filme: " + meuFilme.getDuracaoEmMinutos());
 
         meuFilme.exibeFichaTecnica();
         meuFilme.avalia(5);
@@ -45,6 +47,20 @@ public class Principal {
         lost.exibeFichaTecnica();
         lost.setTemporadas(7);
         lost.setEpisodiosPorTemporada(21);
+        lost.setMinutosPorEpisodio(50);
+        System.out.println("Duraçao para maratonar Lost: " + lost.getDuracaoEmMinutos());
+
+        Filme outroFilme = new Filme();
+        outroFilme.setNome("The Profissional");
+        outroFilme.setAnoDeLancamento(1998);
+        outroFilme.setDuracaoEmMinutos(160);
+
+        CalculadoraDeTempo calculaTempo = new CalculadoraDeTempo();
+        calculaTempo.inclui(meuFilme);
+        calculaTempo.inclui(outroFilme);
+        calculaTempo.inclui(lost);
+        System.out.println(calculaTempo.getTempoTotal());
+
 
     }
 }
