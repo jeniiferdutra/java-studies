@@ -61,6 +61,19 @@ public class Principal {
         calculaTempo.inclui(lost);
         System.out.println(calculaTempo.getTempoTotal());
 
+        ModeloCarro modeloCarro = new ModeloCarro();
+
+        modeloCarro.setNomeModelo("IX35");
+        modeloCarro.setPrecoAno1(54000);
+        modeloCarro.setPrecoAno2(60000);
+        modeloCarro.setPrecoAno3(65000);
+        modeloCarro.calcularMedia();
+        modeloCarro.calcularMaiorPreco();
+        modeloCarro.calcularMenorPreco();
+        System.out.println("O nome do modelo do carro é: " + modeloCarro.getNomeModelo());
+        System.out.println("A média do valor do carro é: R$" + modeloCarro.calcularMedia());
+        System.out.println("O menor valor é: R$ " + modeloCarro.calcularMenorPreco());
+        System.out.println("O maior valor é: R$ " + modeloCarro.calcularMaiorPreco());
 
     }
 }
