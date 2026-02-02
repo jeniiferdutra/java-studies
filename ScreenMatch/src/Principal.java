@@ -75,5 +75,15 @@ public class Principal {
         System.out.println("O menor valor é: R$ " + modeloCarro.calcularMenorPreco());
         System.out.println("O maior valor é: R$ " + modeloCarro.calcularMaiorPreco());
 
+        Animal animal = new Animal();
+        animal.emitirSom();
+
+        Cachorro cachorro = new Cachorro();
+        cachorro.abanarRabo();
+        System.out.println(cachorro.abanarRabo());
+
+        Gato gato = new Gato();
+        System.out.println(gato.arranharMoveis());
+
     }
 }
