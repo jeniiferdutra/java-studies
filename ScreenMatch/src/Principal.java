@@ -106,5 +106,9 @@ public class Principal {
 
         System.out.println("A area total é: " + sala.calcularArea());
         System.out.println("O perimetro é: " + sala.calcularPerimetro());
+
+        TabuadaMultiplicacao tabuada = new TabuadaMultiplicacao();
+        tabuada.setNumero(2);
+        System.out.println(tabuada.mostrarTabuada());
     }
 }
