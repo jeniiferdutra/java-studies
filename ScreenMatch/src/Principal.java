@@ -94,5 +94,17 @@ public class Principal {
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
 
+        ConversorMoeda converte = new ConversorMoeda();
+        converte.setDolar(100);
+        System.out.println("O valor convertido em reais é R$ " + converte.converterDolarParaReal());
+
+        CalculadoraSalaRetangular sala = new CalculadoraSalaRetangular();
+        sala.setAltura(8.9);
+        sala.setLargura(20);
+        sala.calcularArea();
+        sala.calcularPerimetro();
+
+        System.out.println("A area total é: " + sala.calcularArea());
+        System.out.println("O perimetro é: " + sala.calcularPerimetro());
     }
 }
