@@ -10,8 +10,7 @@ import java.util.ArrayList;
 public class Principal {
     public static void main(String[] args) {
 
-        Filme meuFilme = new Filme();
-        meuFilme.setNome("Vanilla Sky");
+        Filme meuFilme = new Filme("Vanilla Sky");
         meuFilme.setAnoDeLancamento(2001);
         meuFilme.setDuracaoEmMinutos(180);
         System.out.println("Durarçao do filme: " + meuFilme.getDuracaoEmMinutos());
@@ -53,8 +52,7 @@ public class Principal {
         lost.setMinutosPorEpisodio(50);
         System.out.println("Duraçao para maratonar Lost: " + lost.getDuracaoEmMinutos());
 
-        Filme outroFilme = new Filme();
-        outroFilme.setNome("The Profissional");
+        Filme outroFilme = new Filme("The Profissional");
         outroFilme.setAnoDeLancamento(1998);
         outroFilme.setDuracaoEmMinutos(160);
 
@@ -97,9 +95,9 @@ public class Principal {
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
 
-        var filmeDoPaulo = new Filme();
+        var filmeDoPaulo = new Filme("Dogville");
         filmeDoPaulo.setDuracaoEmMinutos(200);
-        filmeDoPaulo.setNome("Dogville");
+        //filmeDoPaulo.setNome("Dogville");
         filmeDoPaulo.setAnoDeLancamento(2003);
         filmeDoPaulo.avalia(10);
 
@@ -111,6 +109,7 @@ public class Principal {
         System.out.println("Primeiro filme: " + listaDeFilmes.get(0).getNome());
         System.out.println(listaDeFilmes);
         System.out.println("toString do filme: " + listaDeFilmes.get(0).toString());
+
 
         ConversorMoeda converte = new ConversorMoeda();
         converte.setDolar(100);
