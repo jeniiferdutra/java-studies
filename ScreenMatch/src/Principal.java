@@ -10,8 +10,7 @@ import java.util.ArrayList;
 public class Principal {
     public static void main(String[] args) {
 
-        Filme meuFilme = new Filme("Vanilla Sky");
-        meuFilme.setAnoDeLancamento(2001);
+        Filme meuFilme = new Filme("Vanilla Sky", 2001);
         meuFilme.setDuracaoEmMinutos(180);
         System.out.println("Durarçao do filme: " + meuFilme.getDuracaoEmMinutos());
 
@@ -43,17 +42,14 @@ public class Principal {
         System.out.println("Total de avaliacoes: " + musica.numAvaliacoes);
         System.out.println("Média de avaliacoes: " + musica.calculaMedia());
 
-        Serie lost = new Serie();
-        lost.setNome("Lost");
-        lost.setAnoDeLancamento(2001);
+        Serie lost = new Serie("Lost", 2001);
         lost.exibeFichaTecnica();
         lost.setTemporadas(7);
         lost.setEpisodiosPorTemporada(21);
         lost.setMinutosPorEpisodio(50);
         System.out.println("Duraçao para maratonar Lost: " + lost.getDuracaoEmMinutos());
 
-        Filme outroFilme = new Filme("The Profissional");
-        outroFilme.setAnoDeLancamento(1998);
+        Filme outroFilme = new Filme("The Profissional", 1998);
         outroFilme.setDuracaoEmMinutos(160);
 
         CalculadoraDeTempo calculaTempo = new CalculadoraDeTempo();
@@ -95,10 +91,8 @@ public class Principal {
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
 
-        var filmeDoPaulo = new Filme("Dogville");
+        var filmeDoPaulo = new Filme("Dogville", 2003);
         filmeDoPaulo.setDuracaoEmMinutos(200);
-        //filmeDoPaulo.setNome("Dogville");
-        filmeDoPaulo.setAnoDeLancamento(2003);
         filmeDoPaulo.avalia(10);
 
         ArrayList<Filme> listaDeFilmes = new ArrayList<>();
