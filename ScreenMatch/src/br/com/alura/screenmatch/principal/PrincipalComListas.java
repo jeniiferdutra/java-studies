@@ -16,6 +16,8 @@ public class PrincipalComListas {
         meuFilme.avalia(7);
         Serie lost = new Serie("Lost", 2001);
 
+        Filme f1 = filmeDoPaulo; // <- Variavel de referencia
+
         ArrayList<Titulo> lista = new ArrayList<>();
         lista.add(filmeDoPaulo);
         lista.add(meuFilme);
@@ -23,8 +25,9 @@ public class PrincipalComListas {
         lista.add(lost);
         for (Titulo item: lista) {
             System.out.println(item.getNome());
-            Filme filme = (Filme) item;
-            System.out.println("Classificao " + filme.getClassificacao());
+            if (item instanceof Filme filme && filme.getClassificacao() > 2) {
+                System.out.println("Classificao " + filme.getClassificacao());
+            }
         }
     }
 }
