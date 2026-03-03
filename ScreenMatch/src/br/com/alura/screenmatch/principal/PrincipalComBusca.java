@@ -21,32 +21,32 @@ public class PrincipalComBusca {
         var busca = leitura.nextLine();
 
         String endereco = "https://www.omdbapi.com/?t=" + busca + "&apikey=e5be24ea";
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(endereco))
-                .build();
-        // VISUALIZAR A DOCUMENTACAO
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
-        // visualizar o json
-        String json = response.body();
-        System.out.println(json);
-
-        // Transformar o json na classe Titulo
-        Gson gson = new GsonBuilder() // Configura o Gson para converter campos do JSON que começam com letra maiúscula (ex: "Title") para o padrão do Java (camelCase), e então transforma o JSON no objeto meuTituloOmdb
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .create();
-
-        TitulosOmdb  meuTituloOmdb = gson.fromJson(json, TitulosOmdb.class);
-        System.out.println(meuTituloOmdb);
         try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
+            // VISUALIZAR A DOCUMENTACAO
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            // visualizar o json
+            String json = response.body();
+            System.out.println(json);
+
+            // Transformar o json na classe Titulo
+            Gson gson = new GsonBuilder() // Configura o Gson para converter campos do JSON que começam com letra maiúscula (ex: "Title") para o padrão do Java (camelCase), e então transforma o JSON no objeto meuTituloOmdb
+                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+
+            TitulosOmdb meuTituloOmdb = gson.fromJson(json, TitulosOmdb.class);
+            System.out.println(meuTituloOmdb);
+            //try {
             Titulo meuTitulo = new Titulo(meuTituloOmdb);
             System.out.println("Titulo convertido");
             System.out.println(meuTitulo);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Aconteceu um erro: ");
             System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Algum erro de argumento na busca, verifique o endereço.");// Caso de pesquisar um filme colocando espaço e der erro
+        } catch (Exception e) {
+            System.out.println("Aconteceu algo, nao sei o que é"); // Classe mae de todas as Exceptions, mais generico
         }
         System.out.println("Programa finalizou corretamente.");
     }
