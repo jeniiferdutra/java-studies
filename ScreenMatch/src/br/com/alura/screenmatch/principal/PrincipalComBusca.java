@@ -1,7 +1,10 @@
 package br.com.alura.screenmatch.principal;
 
 import br.com.alura.screenmatch.modelos.Titulo;
+import br.com.alura.screenmatch.modelos.TitulosOmdb;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -31,8 +34,14 @@ public class PrincipalComBusca {
         System.out.println(json);
 
         // Transformar o json na classe Titulo
-        Gson gson = new Gson();
-        Titulo meuTitulo = gson.fromJson(json, Titulo.class);
+        Gson gson = new GsonBuilder() // Configura o Gson para converter campos do JSON que começam com letra maiúscula (ex: "Title") para o padrão do Java (camelCase), e então transforma o JSON no objeto meuTituloOmdb
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .create();
+
+        TitulosOmdb  meuTituloOmdb = gson.fromJson(json, TitulosOmdb.class);
+        System.out.println(meuTituloOmdb);
+        Titulo meuTitulo = new Titulo(meuTituloOmdb);
+        System.out.println("Titulo convertido");
         System.out.println(meuTitulo);
     }
 }
