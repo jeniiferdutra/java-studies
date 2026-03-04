@@ -20,7 +20,8 @@ public class PrincipalComBusca {
         System.out.println("Digite um filme para busca:");
         var busca = leitura.nextLine();
 
-        String endereco = "https://www.omdbapi.com/?t=" + busca + "&apikey=e5be24ea";
+        // replace - para pesquisar titulos com espaço
+        String endereco = "https://www.omdbapi.com/?t=" + busca.replace(" ", "+")+ "&apikey=e5be24ea";
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
