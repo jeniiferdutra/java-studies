@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
@@ -5,11 +7,22 @@ public class Main {
     // Menu para o usuário informar o cep para busca
     // Geraçao de um arquivo .JSON com os dados do endereço
 
-    public static <Gson> void main(String[] args) {
-
+    public static void main(String[] args) {
+        Scanner leitura = new Scanner(System.in);
         ConsultaCep consultaCep = new ConsultaCep();
-        Endereco novoEndereco = consultaCep.buscaEndereco("03552050");
-        System.out.println(novoEndereco);
+
+        System.out.println("Digite um número de série para consulta:");
+        var cep = leitura.nextLine();
+
+        try {
+            Endereco novoEndereco = consultaCep.buscaEndereco(cep);
+            System.out.println(novoEndereco);
+            GeradorDeArquivo gerador = new GeradorDeArquivo();
+            gerador.salvaJson(novoEndereco);
+        } catch (RuntimeException | IOException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Finalizando aplicaçao");
+        }
 
     }
 }
