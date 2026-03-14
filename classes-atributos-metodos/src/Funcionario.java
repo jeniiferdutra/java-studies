@@ -1,7 +1,7 @@
-public class Funcionario {
-    private String nome;
+public abstract class Funcionario {
+    protected String nome;
     private String cargo;
-    private double salario;
+    protected double salario;
     private int controleReajuste = 0;
 
     public Funcionario(String nome, int salario) {
@@ -39,4 +39,12 @@ public class Funcionario {
             System.out.printf("\nNovo sálario de %s é %.2f ", nome, salario);
         }
     }
+
+    public void reajustarSalario() {
+        salario += 500;
+        System.out.printf("\nSálario com dissidio de %s é %.2f ", nome, salario);
+
+    }
+
+    public abstract void calcularPLR(); // Quem vai implementar sao as classes filhas
 }

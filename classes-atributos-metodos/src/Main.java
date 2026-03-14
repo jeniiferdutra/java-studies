@@ -2,19 +2,17 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Funcionario funcionario1 = new Funcionario("Jenifer Rocha", 6500);
-        Funcionario funcionario2 = new Funcionario("Guilherme Diniz", 5500); // salario imutavel atraves do construtor
-        funcionario2.setCargo("Vendedor");
+        //Funcionario funcionario2 = new Funcionario("Guilherme Diniz", 5500); // salario imutavel atraves do construtor
+        //funcionario2.setCargo("Vendedor");
 
-        System.out.println("Funcionario tem o nome: " + funcionario2.getNome());
-        System.out.println("Funcionario tem o cargo: " + funcionario2.getCargo());
-        System.out.println("Funcionario tem o salario: " + funcionario2.getSalario());
+        //System.out.println("Funcionario tem o nome: " + funcionario2.getNome());
+        //System.out.println("Funcionario tem o cargo: " + funcionario2.getCargo());
+        //System.out.println("Funcionario tem o salario: " + funcionario2.getSalario());
 
-        //funcionario2.exibirInformacoes();
         //funcionario2.reajustarSalario(5);
-        funcionario2.reajustarSalario(5);
-        funcionario2.reajustarSalario(10); // controla o reajuste protegendo a classe
-        funcionario2.exibirInformacoes();
+        // funcionario2.reajustarSalario(5);
+        //funcionario2.reajustarSalario(10); // controla o reajuste protegendo a classe
+       // funcionario2.exibirInformacoes();
 
         System.out.println("\n---------------------------------------");
 
@@ -60,5 +58,20 @@ public class Main {
                     contatos.getNome(),
                     contatos.getTelefone());
         }
+
+        System.out.println("\n---------------------------------------");
+
+        Funcionario gerente = new Gerente("Mario", 15000);
+        ((Gerente) gerente).setBonus(2000); // gerente é um funcionario, mas a sua subclasse é gerente
+        gerente.exibirInformacoes();
+        gerente.reajustarSalario(2);
+        ((Gerente) gerente).aprovarProjeto("uso de IA nos códigos java");
+
+        Funcionario desenvolvedor = new Desenvolvedor("Jenifer", 6500, "Backend Java");
+        desenvolvedor.reajustarSalario();
+        desenvolvedor.exibirInformacoes();
+
+
+
     }
 }
