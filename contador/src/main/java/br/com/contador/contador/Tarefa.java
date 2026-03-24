@@ -31,4 +31,5 @@ public class Tarefa {
                 ", pessoaResponsavel='" + pessoaResponsavel + '\'' +
                 '}';
     }
+
 }
