@@ -7,6 +7,7 @@ import br.com.alura.screenmatch02.service.ConsumoAPI;
 import br.com.alura.screenmatch02.service.ConverteDados;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -48,5 +49,13 @@ public class Principal {
         /*
          * * Uma função anônima (sem nome) que permite escrever código de forma muito mais concisa. Em vez de criar um método inteiro, você define a lógicav diretamente onde ela será usada. Estrutura: (parâmetros) -> { corpo da função } Exemplo acima: 's' é o parâmetro (cada item da lista) e
          */
+
+        System.out.println("------------------------");
+        System.out.println("Fluxo de dados com Stream");
+        List<String> nomes = Arrays.asList("Jenifer", "Jaqueline", "Iasmin");
+        nomes.stream()
+                .sorted() // ordem alfabética (A-Z), ordem crescente (1, 2, 3...).
+                .limit(2)
+                .forEach(System.out::println);
     }
 }
