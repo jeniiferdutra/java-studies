@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch02.principal;
 
+import br.com.alura.screenmatch02.model.DadosEpisodio;
 import br.com.alura.screenmatch02.model.DadosSerie;
 import br.com.alura.screenmatch02.model.DadosTemporada;
 import br.com.alura.screenmatch02.service.ConsumoAPI;
@@ -33,5 +34,19 @@ public class Principal {
             temporadas.add(dadosTemporada);
         }
         temporadas.forEach(System.out::println);
+
+//        for (int i = 0; i < dados.totalTemporadas(); i++) {
+//            List<DadosEpisodio> episodiosTemporada = temporadas.get(i).episodios();// get -> pegar a temp do indice
+//            for (int j = 0; j < episodiosTemporada.size(); j++) {
+//                System.out.println(episodiosTemporada.get(j).titulo());
+//            }
+//        }
+
+        // FORMA APRIMORADA
+        temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
+        temporadas.forEach(System.out::println);
+        /*
+         * * Uma função anônima (sem nome) que permite escrever código de forma muito mais concisa. Em vez de criar um método inteiro, você define a lógicav diretamente onde ela será usada. Estrutura: (parâmetros) -> { corpo da função } Exemplo acima: 's' é o parâmetro (cada item da lista) e
+         */
     }
 }
