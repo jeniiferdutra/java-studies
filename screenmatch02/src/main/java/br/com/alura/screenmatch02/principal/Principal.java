@@ -6,10 +6,8 @@ import br.com.alura.screenmatch02.model.DadosTemporada;
 import br.com.alura.screenmatch02.service.ConsumoAPI;
 import br.com.alura.screenmatch02.service.ConverteDados;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Principal {
     Scanner leitura = new Scanner(System.in);
@@ -50,12 +48,25 @@ public class Principal {
          * * Uma função anônima (sem nome) que permite escrever código de forma muito mais concisa. Em vez de criar um método inteiro, você define a lógicav diretamente onde ela será usada. Estrutura: (parâmetros) -> { corpo da função } Exemplo acima: 's' é o parâmetro (cada item da lista) e
          */
 
-        System.out.println("------------------------");
-        System.out.println("Fluxo de dados com Stream");
-        List<String> nomes = Arrays.asList("Jenifer", "Jaqueline", "Iasmin");
-        nomes.stream()
-                .sorted() // ordem alfabética (A-Z), ordem crescente (1, 2, 3...).
-                .limit(2)
+//        System.out.println("------------------------");
+//        System.out.println("Fluxo de dados com Stream");
+//        List<String> nomes = Arrays.asList("Jenifer", "Jaqueline", "Iasmin");
+//        nomes.stream()
+//                .sorted() // ordem alfabética (A-Z), ordem crescente (1, 2, 3...).
+//                .limit(2)
+//                .forEach(System.out::println);
+
+        System.out.println("\nTop 5 episódios");
+        List<DadosEpisodio> dadosEpisodios = temporadas.stream()
+                .flatMap(t -> t.episodios().stream()) // gerar um fluxo de dados com os eps de todas as temporadas
+                .collect(Collectors.toList()); // coletar tudo para uma nova lista, lista mutavel
+                //.toList(); -> lista imutavel
+        System.out.println();
+        dadosEpisodios.stream()
+                .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A"))
+                .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed())// decrescente
+                .limit(5)
                 .forEach(System.out::println);
+
     }
 }
