@@ -83,18 +83,18 @@ public class Principal {
                 ).collect(Collectors.toList());
         episodios.forEach(System.out::println);
 
-        System.out.println("Digite um trecho do título do episódio");
-        var trechoTitulo = leitura.nextLine();
-
-        Optional<Episodio> episodioBuscado = episodios.stream()
-                .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
-                .findFirst();
-        if(episodioBuscado.isPresent()) { // se existe
-            System.out.println("Episódio encontrado!");
-            System.out.println("Temporada: " + episodioBuscado.get().getTemporada());
-        } else {
-            System.out.println("Episódio nao encontrado!");
-        }
+//        System.out.println("Digite um trecho do título do episódio");
+//        var trechoTitulo = leitura.nextLine();
+//
+//        Optional<Episodio> episodioBuscado = episodios.stream()
+//                .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
+//                .findFirst();
+//        if(episodioBuscado.isPresent()) { // se existe
+//            System.out.println("Episódio encontrado!");
+//            System.out.println("Temporada: " + episodioBuscado.get().getTemporada());
+//        } else {
+//            System.out.println("Episódio nao encontrado!");
+//        }
 //
 //        System.out.println("A partir de que ano voce deseja ver os episódios?");
 //        var ano = leitura.nextInt();
@@ -110,5 +110,11 @@ public class Principal {
 //                                " Episódio: " + e.getTitulo() +
 //                                " Data de lançamento: " + e.getDataLancamento().format(formatador)
 //                ));
+
+        Map<Integer, Double> avaliacoesPorTemporada = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0) // ignorar a temp que nao tiver avaliacao
+                .collect(Collectors.groupingBy(Episodio::getTemporada,
+                        Collectors.averagingDouble(Episodio::getAvaliacao)));
+        System.out.println(avaliacoesPorTemporada);
     }
 }
