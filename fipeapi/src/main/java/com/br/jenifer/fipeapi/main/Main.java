@@ -1,11 +1,13 @@
 package com.br.jenifer.fipeapi.main;
 
+import com.br.jenifer.fipeapi.model.Dados;
 import com.br.jenifer.fipeapi.model.Modelos;
 import com.br.jenifer.fipeapi.model.Veiculo;
 import com.br.jenifer.fipeapi.service.ConsumoAPI;
 import com.br.jenifer.fipeapi.service.ConverteDados;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -79,7 +81,17 @@ public class Main {
         endereco = endereco + "/" + codigoModelo + "/anos";
         json = consumo.obterDados(endereco);
         List<Veiculo> anos = conversor.obterLista(json, Veiculo.class);
+        List<Dados> dado = new ArrayList<>();
 
-        
+        for (int i = 0; i < anos.size(); i++) {
+            var enderecoAnos = endereco + "/" + anos.get(i).codigo();
+            json = consumo.obterDados(enderecoAnos);
+            Dados dados = conversor.obterDados(json, Dados.class);
+            dado.add(dados);
+        }
+
+        System.out.println("\nTodos os veiculos filtrados com avaliacoes por ano");
+        dado.forEach(System.out::println);
+
     }
 }

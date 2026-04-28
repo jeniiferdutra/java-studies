@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record Veiculo(
-        @JsonAlias("codigo") Integer codigo,
+        @JsonAlias("codigo") String codigo,
         @JsonAlias("nome") String descricao
 ) {
     @Override
     public String toString() {
         return String.format(
-                "| Cód: %4d | Descriçao: %s",
+                "| Cód: %s | Descriçao: %s",
                 codigo, descricao
         );
     }
