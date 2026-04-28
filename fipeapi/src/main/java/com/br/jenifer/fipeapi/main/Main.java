@@ -7,7 +7,9 @@ import com.br.jenifer.fipeapi.service.ConverteDados;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 @Component
 public class Main {
@@ -60,5 +62,24 @@ public class Main {
         modeloLista.modelos().stream()
                 .sorted(Comparator.comparing(Veiculo::codigo))
                 .forEach(System.out::println);
+
+        System.out.println("\nDigite um trecho do nome do carro a ser buscado:");
+        var nomeVeiculo = leitura.nextLine();
+
+        List<Veiculo> modelosFiltrados = modeloLista.modelos().stream()
+                .filter(m -> m.descricao().toLowerCase().contains(nomeVeiculo.toLowerCase()))
+                .collect(Collectors.toList());
+
+        System.out.println("\nModelos filtrados");
+        modelosFiltrados.forEach(System.out::println);
+
+        System.out.println("Digite por favor o código do modelo para buscar os valores de avaliacao");
+        var codigoModelo = leitura.nextLine();
+
+        endereco = endereco + "/" + codigoModelo + "/anos";
+        json = consumo.obterDados(endereco);
+        List<Veiculo> anos = conversor.obterLista(json, Veiculo.class);
+
+        
     }
 }
