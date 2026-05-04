@@ -1,43 +1,86 @@
 package br.com.alura.ScreenMatchApplication.main;
 
+import br.com.alura.ScreenMatchApplication.model.DadosSerie;
+import br.com.alura.ScreenMatchApplication.model.DadosTemporada;
+import br.com.alura.ScreenMatchApplication.service.ConsumoAPI;
+import br.com.alura.ScreenMatchApplication.service.ConverteDados;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Principal {
     Scanner leitura = new Scanner(System.in);
+    private ConsumoAPI consumo = new ConsumoAPI();
+    private ConverteDados conversor = new ConverteDados();
 
-
+    private final String ENDERECO = "https://omdbapi.com/?t=";
+    private final String API_KEY = "&apikey=e5be24ea";
+    private List <DadosSerie> dadosSeries = new ArrayList<>();
 
     public void exibeMenu() {
-        var menu = """
-                1 - Buscar séries
-                2 - Buscar episódios
-                0 - Sair
-                """;
+        var opcao = -1;
+        while (opcao != 0) {
+            var menu = """
+                    1 - Buscar séries
+                    2 - Buscar episódios
+                    3 - Listar séries buscadas
+                    0 - Sair
+                    """;
 
-        System.out.println(menu);
-        var opcao = leitura.nextInt();
-        leitura.nextLine();
+            System.out.println(menu);
+            opcao = leitura.nextInt();
+            leitura.nextLine();
 
-        switch (opcao) {
-            case 1:
-                buscarSerieWeb();
-                break;
-            case 2:
-                buscarEpisodioPorSerie();
-                break;
-            case 0:
-                System.out.println("Saindo...");
-                break;
-            default:
-                System.out.println("Opcao inválida");
+            switch (opcao) {
+                case 1:
+                    buscarSerieWeb();
+                    break;
+                case 2:
+                    buscarEpisodioPorSerie();
+                    break;
+                case 3:
+                    listarSeriesBuscadas();
+                    break;
+                case 0:
+                    System.out.println("Saindo...");
+                    break;
+                default:
+                    System.out.println("Opcao inválida");
+            }
         }
     }
 
-    public void buscarSerieWeb(){
-
+    public void buscarSerieWeb() {
+        DadosSerie dados = getDadosSerie();
+        dadosSeries.add(dados);
+        System.out.println(dados);
     }
 
-    public void buscarEpisodioPorSerie() {
+    private DadosSerie getDadosSerie() {
+        System.out.println("Digite o nome da série para busca:");
+        var nomeSerie = leitura.nextLine();
+        var json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
+        DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
+        return dados;
+    }
 
+    private void buscarEpisodioPorSerie() {
+        DadosSerie dadosSerie = getDadosSerie();
+        List<DadosTemporada> temporadas = new ArrayList<>();
+
+        for (int i = 1; i <= dadosSerie.totalTemporadas(); i++) {
+            var json = consumo.obterDados(ENDERECO + dadosSerie.titulo().replace(" ", "+") + "&season=" + i + API_KEY);
+            DadosTemporada dadosTemporada = conversor.obterDados(json, DadosTemporada.class);
+            temporadas.add(dadosTemporada);
+        }
+        temporadas.forEach(System.out::println);
+    }
+
+    private void listarSeriesBuscadas() {
+        dadosSeries.forEach(System.out::println);
     }
 }
