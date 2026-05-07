@@ -1,15 +1,17 @@
 package br.com.alura.ScreenMatchApplication.service;
 
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
-public class ConverteDados implements IConverteDados{
+public class ConverteDados implements IConverteDados {
     private ObjectMapper mapper = new ObjectMapper();
-
 
     @Override
     public <T> T obterDados(String json, Class<T> classe) {
-        // Ler o json e tenta transformar na classe que a pessoa passou
-        return mapper.readValue(json, classe); // similar ao gson
+        try {
+            return mapper.readValue(json, classe);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Erro ao converter o JSON: " + e.getMessage());
+        }
     }
 }
-
