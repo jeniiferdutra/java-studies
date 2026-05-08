@@ -1,6 +1,7 @@
 package br.com.alura.ScreenMatchApplication;
 
 import br.com.alura.ScreenMatchApplication.main.Principal;
+import br.com.alura.ScreenMatchApplication.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,10 +15,11 @@ public class ScreenMatchApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-	private Principal main;
+	private SerieRepository repositorio;
 
 	@Override
 	public void run(String... args) throws Exception {
-		main.exibeMenu();
+		Principal principal = new Principal(repositorio);
+		principal.exibeMenu();
 	}
 }

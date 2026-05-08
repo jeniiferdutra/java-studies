@@ -4,6 +4,8 @@ import br.com.alura.ScreenMatchApplication.service.ConsultaChatGPT;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
@@ -28,6 +30,9 @@ public class Serie {
     private String poster;
     private String sinopse;
 
+    @Transient
+    private List<DadosEpisodio> episodios = new ArrayList<>(); // Por ora, informar a jpa para nao mexer nesse atributo
+
     public Serie(DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();
         this.totalTemporadas = dadosSerie.totalTemporadas();
@@ -45,6 +50,14 @@ public class Serie {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<DadosEpisodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<DadosEpisodio> episodios) {
+        this.episodios = episodios;
     }
 
     public String getTitulo() {

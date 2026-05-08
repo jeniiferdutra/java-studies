@@ -3,6 +3,7 @@ package br.com.alura.ScreenMatchApplication.main;
 import br.com.alura.ScreenMatchApplication.model.DadosSerie;
 import br.com.alura.ScreenMatchApplication.model.DadosTemporada;
 import br.com.alura.ScreenMatchApplication.model.Serie;
+import br.com.alura.ScreenMatchApplication.repository.SerieRepository;
 import br.com.alura.ScreenMatchApplication.service.ConsumoAPI;
 import br.com.alura.ScreenMatchApplication.service.ConverteDados;
 
@@ -10,20 +11,30 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Principal {
     Scanner leitura = new Scanner(System.in);
+
     private ConsumoAPI consumo = new ConsumoAPI();
+
     private ConverteDados conversor = new ConverteDados();
 
     private final String ENDERECO = "https://omdbapi.com/?t=";
+
     private final String API_KEY = "&apikey=e5be24ea";
+
     private List <DadosSerie> dadosSeries = new ArrayList<>();
+
+    private SerieRepository repositorio;
+
+    public Principal(SerieRepository repositorio) {
+        this.repositorio = repositorio;
+    }
 
     public void exibeMenu() {
         var opcao = -1;
@@ -60,7 +71,8 @@ public class Principal {
 
     public void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
-        dadosSeries.add(dados);
+        Serie serie = new Serie(dados);
+        repositorio.save(serie);// Salvar no repositório
         System.out.println(dados);
     }
 
