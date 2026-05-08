@@ -2,15 +2,28 @@ package br.com.alura.ScreenMatchApplication.model;
 
 import br.com.alura.ScreenMatchApplication.service.ConsultaChatGPT;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import jakarta.persistence.*;
 
 import java.util.Optional;
 import java.util.OptionalDouble;
 
+@Entity  // Essa classe vai ser uma tabela do banco de dados relacional
+@Table(name = "series") // Comunicar pra JPA que eu vou colocar o nome da classe no plural (serieS)
 public class Serie {
+
+    @Id // Indicar pra JPA que esse é o meu id/chave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Define que o banco de dados cuidará de gerar esse num automaticamente (1, 2, 3...) toda vez que salvar uma nova série
+    private Long id; // definir chave primária (indice unico)
+
+    @Column(unique = true)// NAO pode ter duas series com o mesmo titulo
+    // @Column(name = "nomeDaSerie") -> Se eu quiser informar pra JPA que eu quero mudar o nome titulo para `nomeDaSerie`
     private String titulo;
     private Integer totalTemporadas;
     private double avaliacao;
+
+    @Enumerated(EnumType.STRING) // qual o tipo do meu enum
     private Categoria genero;
+
     private String atores;
     private String poster;
     private String sinopse;
@@ -24,6 +37,14 @@ public class Serie {
         this.poster = dadosSerie.poster();
         this.sinopse = dadosSerie.sinopse();
         // this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim(); -> sem saldo para testar a traducao da IA
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
