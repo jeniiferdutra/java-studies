@@ -33,6 +33,8 @@ public class Serie {
     @Transient
     private List<DadosEpisodio> episodios = new ArrayList<>(); // Por ora, informar a jpa para nao mexer nesse atributo
 
+    public Serie() {} // JPA exige que a classe tenha um construtor padrao
+
     public Serie(DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();
         this.totalTemporadas = dadosSerie.totalTemporadas();
