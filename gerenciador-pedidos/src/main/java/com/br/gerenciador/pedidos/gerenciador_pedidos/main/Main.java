@@ -22,7 +22,7 @@ public class Main {
     }
 
     public void salvarDados() {
-        Produto produto = new Produto("Notebook", 3500.0);
+        Produto produto = new Produto("Smartphone", 1500.0);
         Categoria categoria = new Categoria(1L, "Eletrônicos");
         Pedido pedido = new Pedido(1L, LocalDate.now());
 

@@ -16,6 +16,8 @@ public class Produto {
     @Column(name = "valor")
     private double preco;
 
+    public Produto() {}
+
     public Produto(String nome, Double preco) {
         this.nome = nome;
         this.preco = preco;

@@ -17,13 +17,17 @@ public class GerenciadorPedidosApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-	private CategoriaRepository Categoriarepositorio;
-	private PedidoRepository Pedidorepositorio;
-	private ProdutoRepository Produtorepositorio;
+	private CategoriaRepository categoriaRepositorio;
+
+	@Autowired
+	private PedidoRepository pedidoRepositorio;
+
+	@Autowired
+	private ProdutoRepository produtoRepositorio;
 
 	@Override
 	public void run(String... args) throws Exception {
-		Main main = new Main(Categoriarepositorio, Pedidorepositorio, Produtorepositorio);
+		Main main = new Main(categoriaRepositorio, pedidoRepositorio, produtoRepositorio);
 		main.salvarDados();
 	}
 }
