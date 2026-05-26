@@ -30,8 +30,8 @@ public class Serie {
     private String poster;
     private String sinopse;
 
-    @Transient
-    private List<DadosEpisodio> episodios = new ArrayList<>(); // Por ora, informar a jpa para nao mexer nesse atributo
+    @OneToMany(mappedBy = "serie") // indica que UM registro desta classe pode estar ligado a MUITOS registros da outra... UMA Série tem MUITOS Episódios. / UM Pedido tem MUITOS Produtos.
+    private List<Episodio> episodios = new ArrayList<>(); // Por ora, informar a jpa para nao mexer nesse atributo
 
     public Serie() {} // JPA exige que a classe tenha um construtor padrao
 
@@ -54,11 +54,11 @@ public class Serie {
         this.id = id;
     }
 
-    public List<DadosEpisodio> getEpisodios() {
+    public List<Episodio> getEpisodios() {
         return episodios;
     }
 
-    public void setEpisodios(List<DadosEpisodio> episodios) {
+    public void setEpisodios(List<Episodio> episodios) {
         this.episodios = episodios;
     }
 
