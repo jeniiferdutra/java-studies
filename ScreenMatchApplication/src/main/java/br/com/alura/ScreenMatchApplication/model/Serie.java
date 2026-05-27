@@ -30,7 +30,7 @@ public class Serie {
     private String poster;
     private String sinopse;
 
-    @OneToMany(mappedBy = "serie") // indica que UM registro desta classe pode estar ligado a MUITOS registros da outra... UMA Série tem MUITOS Episódios. / UM Pedido tem MUITOS Produtos.
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL) // indica que UM registro desta classe pode estar ligado a MUITOS registros da outra... UMA Série tem MUITOS Episódios. / UM Pedido tem MUITOS Produtos.
     private List<Episodio> episodios = new ArrayList<>(); // Por ora, informar a jpa para nao mexer nesse atributo
 
     public Serie() {} // JPA exige que a classe tenha um construtor padrao

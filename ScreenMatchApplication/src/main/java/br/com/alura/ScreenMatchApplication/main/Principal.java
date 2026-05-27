@@ -85,31 +85,44 @@ public class Principal {
     }
 
     private void buscarEpisodioPorSerie() {
-        listarSeriesBuscadas();
+        listarSeriesBuscadas(); // Mostra na tela as séries que o usuário já tem salvas no banco
         System.out.println("Escolha uma série pelo nome: ");
         var nomeSerie = leitura.nextLine();
 
+        // Procura na lista local de séries se o nome digitado bate com algum título
         Optional<Serie> serie = series.stream()
+                // Filtra ignorando letras maiúsculas/minúsculas
                 .filter(s -> s.getTitulo().toLowerCase().contains(nomeSerie.toLowerCase()))
+                // Pega o primeiro resultado que encontrar (se houver)
                 .findFirst();
 
         if(serie.isPresent()) { // Se a serie estiver presente
 
+            // Pega o objeto real da Série que estava guardado dentro do Optional
             var serieEcontrada = serie.get(); // ter a referencia da serie
             List<DadosTemporada> temporadas = new ArrayList<>();
 
+            // Loop "for" para ir de 1 até o total de temporadas da série (ex: de 1 a 5)
             for (int i = 1; i <= serieEcontrada.getTotalTemporadas(); i++) {
+                // // Faz a chamada na API do OMDB para buscar a temporada atual (i)
                 var json = consumo.obterDados(ENDERECO + serieEcontrada.getTitulo().replace(" ", "+") + "&season=" + i + API_KEY);
+                // Converte o JSON daquela temporada específica para o nosso Record DadosTemporada
                 DadosTemporada dadosTemporada = conversor.obterDados(json, DadosTemporada.class);
+                // Guarda essa temporada convertida na nossa lista
                 temporadas.add(dadosTemporada);
             }
             temporadas.forEach(System.out::println);
 
+            // Transforma os dados da API em entidades do Banco de Dados
             List<Episodio> episodios = temporadas.stream()
+                    // flatMap: "achata" as listas de episódios de cada temporada em um único fluxo (Stream)
                     .flatMap(d -> d.episodios().stream()
+                            // map: Transforma cada "DadosEpisodio" (Record) em um "Episodio" (Classe/@Entity)
                             .map(e -> new Episodio(d.numero(), e)))
+                    // Junta todos esses novos episódios em uma lista final
                     .collect(Collectors.toList());
 
+            // Vincula essa lista de episódios nova à série que encontramos lá no início
             serieEcontrada.setEpisodios(episodios);
             repositorio.save(serieEcontrada);
         } else {

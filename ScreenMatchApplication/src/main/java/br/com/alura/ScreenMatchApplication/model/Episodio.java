@@ -2,6 +2,7 @@ package br.com.alura.ScreenMatchApplication.model;
 
 import jakarta.persistence.*;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 @Entity
@@ -25,6 +26,8 @@ public class Episodio {
     @ManyToOne // indica que MUITOS registros desta classe pertencem a apenas UM registro da outra.
     private Serie serie;
 
+    public Episodio(){}
+
     public Episodio(Integer numeroTemporada, DadosEpisodio dadosEpisodio) {
         this.temporada = numeroTemporada;
         this.titulo = dadosEpisodio.titulo();
@@ -34,6 +37,12 @@ public class Episodio {
             this.avaliacao = Double.valueOf(dadosEpisodio.avaliacao());
         } catch (NumberFormatException ex) {
             this.avaliacao = 0.0;
+        }
+
+        try {
+            this.dataLancamento = LocalDate.parse(dadosEpisodio.dataLancamento());
+        } catch (DateTimeException ex) {
+            this.dataLancamento = null;
         }
     }
 
