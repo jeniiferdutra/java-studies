@@ -30,7 +30,7 @@ public class Serie {
     private String poster;
     private String sinopse;
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL) // indica que UM registro desta classe pode estar ligado a MUITOS registros da outra... UMA Série tem MUITOS Episódios. / UM Pedido tem MUITOS Produtos.
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // indica que UM registro desta classe pode estar ligado a MUITOS registros da outra... UMA Série tem MUITOS Episódios. / UM Pedido tem MUITOS Produtos.
     private List<Episodio> episodios = new ArrayList<>(); // Por ora, informar a jpa para nao mexer nesse atributo
 
     public Serie() {} // JPA exige que a classe tenha um construtor padrao
@@ -59,6 +59,7 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this)); // ajustar a chave estrangeira
         this.episodios = episodios;
     }
 
@@ -127,6 +128,7 @@ public class Serie {
                 ", avaliacao=" + avaliacao +
                 ", atores='" + atores + '\'' +
                 ", poster='" + poster + '\'' +
-                ", sinopse='" + sinopse + '\'';
+                ", sinopse='" + sinopse + '\'' +
+                ", episodios='" + episodios + '\'';
     }
 }

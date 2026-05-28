@@ -101,4 +101,13 @@ public class Episodio {
     public void setSerie(Serie serie) {
         this.serie = serie;
     }
+
+    @Override
+    public String toString() {
+        return "Temporada " + temporada +
+                ", Número " + numeroEpisodio +
+                " - '" + titulo + '\'' +
+                ", Avaliação=" + avaliacao +
+                ", Lançamento=" + dataLancamento;
+    }
 }
