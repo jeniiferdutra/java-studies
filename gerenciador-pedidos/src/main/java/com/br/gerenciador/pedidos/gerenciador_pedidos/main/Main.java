@@ -8,6 +8,7 @@ import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.PedidoRepositor
 import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.ProdutoRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
 
@@ -22,12 +23,32 @@ public class Main {
     }
 
     public void salvarDados() {
-        Produto produto = new Produto("Smartphone", 1500.0);
-        Categoria categoria = new Categoria(1L, "Eletrônicos");
-        Pedido pedido = new Pedido(1L, LocalDate.now());
 
-        produtoRepository.save(produto);
-        categoriaRepository.save(categoria);
-        pedidoRepository.save(pedido);
+        Categoria categoriaEletronicos = new Categoria(null, "Eletrônicos");
+        Categoria categoriaLivros = new Categoria(null, "Livros");
+
+        Produto produto1 = new Produto("Smartphone", 1500.0, categoriaEletronicos);
+        Produto produto2 = new Produto("Smartphone", 2500.0, categoriaEletronicos);
+        Produto produto3 = new Produto("Livro de Java", 100.0, categoriaLivros);
+        Produto produto4 = new Produto("Livro de Spring Boot", 150.0, categoriaLivros);
+
+        categoriaEletronicos.setProdutos(List.of(produto1, produto2));
+        categoriaLivros.setProdutos(List.of(produto3, produto4));
+
+        categoriaRepository.saveAll(List.of(categoriaEletronicos, categoriaLivros));
+
+//        produtoRepository.save(produto);
+//        categoriaRepository.save(categoria);
+//        pedidoRepository.save(pedido);
+
+        // Testando a persistência e o relacionamento
+        System.out.println("Categorias e seus produtos:");
+        categoriaRepository.findAll().forEach(categoria -> {
+            System.out.println("Categoria: " + categoria.getNome());
+            categoria.getProdutos().forEach(produto ->
+                    System.out.println(" - Produto: " + produto.getNome())
+            );
+        });
+
     }
 }
