@@ -10,7 +10,11 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "fornecedor_id")
+    private Fornecedor fornecedor;
+
+    @Column(nullable = false)
     private String nome;
 
     @Column(name = "valor")
@@ -39,4 +43,13 @@ public class Produto {
     public double getPreco() {
         return preco;
     }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
 }

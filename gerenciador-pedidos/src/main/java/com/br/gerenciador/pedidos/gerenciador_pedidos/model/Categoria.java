@@ -15,7 +15,7 @@ public class Categoria {
     private String nome;
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
-    private List<Produto> produtos = new ArrayList<>();
+    private List<Produto> produtos;
 
     public Categoria() {}
 

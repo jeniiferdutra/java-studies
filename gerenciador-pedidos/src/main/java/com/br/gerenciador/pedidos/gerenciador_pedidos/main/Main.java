@@ -1,9 +1,11 @@
 package com.br.gerenciador.pedidos.gerenciador_pedidos.main;
 
 import com.br.gerenciador.pedidos.gerenciador_pedidos.model.Categoria;
+import com.br.gerenciador.pedidos.gerenciador_pedidos.model.Fornecedor;
 import com.br.gerenciador.pedidos.gerenciador_pedidos.model.Pedido;
 import com.br.gerenciador.pedidos.gerenciador_pedidos.model.Produto;
 import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.CategoriaRepository;
+import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.FornecedorRepository;
 import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.PedidoRepository;
 import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.ProdutoRepository;
 
@@ -15,40 +17,63 @@ public class Main {
     private CategoriaRepository categoriaRepository;
     private PedidoRepository pedidoRepository;
     private ProdutoRepository produtoRepository;
+    private FornecedorRepository fornecedorRepository;
 
-    public Main(CategoriaRepository categoriaRepository, PedidoRepository pedidoRepository, ProdutoRepository produtoRepository) {
+    public Main(CategoriaRepository categoriaRepository, PedidoRepository pedidoRepository, ProdutoRepository produtoRepository, FornecedorRepository fornecedorRepository) {
         this.categoriaRepository = categoriaRepository;
         this.pedidoRepository = pedidoRepository;
         this.produtoRepository = produtoRepository;
+        this.fornecedorRepository = fornecedorRepository;
     }
 
     public void salvarDados() {
 
-        Categoria categoriaEletronicos = new Categoria(null, "Eletrônicos");
-        Categoria categoriaLivros = new Categoria(null, "Livros");
-
-        Produto produto1 = new Produto("Smartphone", 1500.0, categoriaEletronicos);
-        Produto produto2 = new Produto("Smartphone", 2500.0, categoriaEletronicos);
-        Produto produto3 = new Produto("Livro de Java", 100.0, categoriaLivros);
-        Produto produto4 = new Produto("Livro de Spring Boot", 150.0, categoriaLivros);
-
-        categoriaEletronicos.setProdutos(List.of(produto1, produto2));
-        categoriaLivros.setProdutos(List.of(produto3, produto4));
-
+        // Criando categorias
+        Categoria categoriaEletronicos = new Categoria(1L, "Eletrônicos");
+        Categoria categoriaLivros = new Categoria(2L, "Livros");
         categoriaRepository.saveAll(List.of(categoriaEletronicos, categoriaLivros));
 
-//        produtoRepository.save(produto);
-//        categoriaRepository.save(categoria);
-//        pedidoRepository.save(pedido);
+        // Criando fornecedores
+        Fornecedor fornecedorTech = new Fornecedor("Tech Supplier");
+        Fornecedor fornecedorLivros = new Fornecedor("Livraria Global");
+        fornecedorRepository.saveAll(List.of(fornecedorTech, fornecedorLivros));
 
-        // Testando a persistência e o relacionamento
-        System.out.println("Categorias e seus produtos:");
-        categoriaRepository.findAll().forEach(categoria -> {
-            System.out.println("Categoria: " + categoria.getNome());
-            categoria.getProdutos().forEach(produto ->
-                    System.out.println(" - Produto: " + produto.getNome())
+        // Criando produtos
+        Produto produto1 = new Produto("Kindle", 550.0, categoriaEletronicos);
+        Produto produto2 = new Produto("Smartphone", 2500.0, categoriaEletronicos);
+        Produto produto3 = new Produto("Livro de Java", 100.0, categoriaLivros);
+        produto1.setFornecedor(fornecedorTech);
+        produto2.setFornecedor(fornecedorTech);
+        produto3.setFornecedor(fornecedorLivros);
+        produtoRepository.saveAll(List.of(produto1, produto2, produto3));
+
+        // Criando pedidos e associando produtos
+        Pedido pedido1 = new Pedido(1L, LocalDate.now());
+        pedido1.setProdutos(List.of(produto1, produto3));
+        Pedido pedido2 = new Pedido(2L, LocalDate.now().minusDays(1));
+        pedido2.setProdutos(List.of(produto2));
+        pedidoRepository.saveAll(List.of(pedido1, pedido2));
+
+/// Testando consultas e verificando os relacionamentos
+        System.out.println("Produtos na categoria Eletrônicos:");
+        categoriaRepository.findById(1L).ifPresent(categoria ->
+                categoria.getProdutos().forEach(produto ->
+                        System.out.println(" - " + produto.getNome())
+                )
+        );
+
+        System.out.println("\nPedidos e seus produtos:");
+        pedidoRepository.findAll().forEach(pedido -> {
+            System.out.println("Pedido " + pedido.getId() + ":");
+            pedido.getProdutos().forEach(produto ->
+                    System.out.println(" - " + produto.getNome())
             );
         });
 
+        System.out.println("\nProdutos e seus fornecedores:");
+        produtoRepository.findAll().forEach(produto ->
+                System.out.println("Produto: " + produto.getNome() +
+                        ", Fornecedor: " + produto.getFornecedor().getNome())
+        );
     }
 }
