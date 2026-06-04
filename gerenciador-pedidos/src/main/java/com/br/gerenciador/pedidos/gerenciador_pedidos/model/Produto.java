@@ -5,31 +5,21 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "produtos")
 public class Produto {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-incremental
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "fornecedor_id")
-    private Fornecedor fornecedor;
-
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String nome;
 
     @Column(name = "valor")
     private double preco;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
-
     public Produto() {}
 
-    public Produto(String nome, Double preco, Categoria categoria) {
+    public Produto(String nome, double preco) {
         this.nome = nome;
         this.preco = preco;
-        this.categoria = categoria;
     }
 
     public Long getId() {
@@ -42,14 +32,6 @@ public class Produto {
 
     public double getPreco() {
         return preco;
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
     }
 
 }

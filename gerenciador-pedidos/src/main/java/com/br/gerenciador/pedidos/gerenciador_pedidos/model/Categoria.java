@@ -2,20 +2,15 @@ package com.br.gerenciador.pedidos.gerenciador_pedidos.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "categorias")
 public class Categoria {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false) // nao nulo
     private String nome;
-
-    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
-    private List<Produto> produtos;
 
     public Categoria() {}
 
@@ -32,11 +27,4 @@ public class Categoria {
         return nome;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
 }
