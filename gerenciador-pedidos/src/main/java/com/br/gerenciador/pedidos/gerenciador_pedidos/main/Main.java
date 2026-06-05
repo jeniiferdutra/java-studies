@@ -30,10 +30,11 @@ public class Main {
         Produto produto01 = new Produto("Kindle - 11 geracao", 550.0);
         Produto produto02 = new Produto("Chancela", 140.0);
         Produto produto03 = new Produto("Outlander", 65.0);
+        Produto produto04 = new Produto("O ultimo reino", 52.0);
 
         categoria01.setProdutos(List.of(produto01));
         categoria02.setProdutos(List.of(produto02));
-        categoria03.setProdutos(List.of(produto03));
+        categoria03.setProdutos(List.of(produto03, produto04));
 
         Pedido pedido01 = new Pedido(LocalDate.now());
         Pedido pedido02 = new Pedido(LocalDate.of(2026, 5, 20));
