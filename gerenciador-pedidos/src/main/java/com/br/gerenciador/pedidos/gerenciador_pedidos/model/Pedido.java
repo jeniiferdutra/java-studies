@@ -15,8 +15,7 @@ public class Pedido {
 
     public Pedido() {}
 
-    public Pedido(Long id, LocalDate localDate) {
-        this.id = id;
+    public Pedido(LocalDate localDate) {
         this.localDate = localDate;
     }
 

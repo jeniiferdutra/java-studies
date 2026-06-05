@@ -7,6 +7,7 @@ import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.CategoriaReposi
 import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.PedidoRepository;
 import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.ProdutoRepository;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
 
@@ -21,15 +22,25 @@ public class Main {
     }
 
     public void salvarDados() {
+        Categoria categoria01 = new Categoria("Kindle");
+        Categoria categoria02 = new Categoria("Papelaria");
+        Categoria categoria03 = new Categoria("Livros");
+
 
         Produto produto01 = new Produto("Kindle - 11 geracao", 550.0);
-        Categoria categoria01 = new Categoria(1L, "Kindle");
-        Pedido pedido01 = new Pedido(1L, LocalDate.now());
+        Produto produto02 = new Produto("Chancela", 140.0);
+        Produto produto03 = new Produto("Outlander", 65.0);
 
-        produtoRepository.save(produto01);
-        categoriaRepository.save(categoria01);
-        pedidoRepository.save(pedido01);
+        categoria01.setProdutos(List.of(produto01));
+        categoria02.setProdutos(List.of(produto02));
+        categoria03.setProdutos(List.of(produto03));
 
-        System.out.println("Dados salvos com sucesso!");
+        Pedido pedido01 = new Pedido(LocalDate.now());
+        Pedido pedido02 = new Pedido(LocalDate.of(2026, 5, 20));
+        Pedido pedido03 = new Pedido(LocalDate.of(2012, 1, 24));
+
+        categoriaRepository.saveAll(List.of(categoria01, categoria02, categoria03));
+
+        pedidoRepository.saveAll(List.of(pedido01, pedido02, pedido03));
     }
 }
