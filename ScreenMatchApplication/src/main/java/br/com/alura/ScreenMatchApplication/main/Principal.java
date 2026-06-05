@@ -75,7 +75,7 @@ public class Principal {
                     buscarSeriesPorCategoria();
                     break;
                 case 8:
-                    buscarSeriesPorNumeroMaximoDeTemporadas();
+                    filtrarSeriesPorTemporadaEAvaliacao();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -194,14 +194,16 @@ public class Principal {
         seriesPorCategoria.forEach(System.out::println);
     }
 
-    private void buscarSeriesPorNumeroMaximoDeTemporadas() {
-        System.out.println("Número máximo de temporadas: ");
+    private void filtrarSeriesPorTemporadaEAvaliacao() {
+        System.out.println("Filtrar séries até quantas temporadas? ");
         var maximoTemporadas = leitura.nextInt();
-        System.out.println("Avaliaçoes a partir de qual valor: ");
+        leitura.nextLine();
+        System.out.println("Avaliação a partir de qual valor: ");
         var avaliacao = leitura.nextDouble();
-        List<Serie> seriesEncontradas = repositorio.findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(maximoTemporadas, avaliacao);
+        leitura.nextLine();
+        List<Serie> filtroSeries = repositorio.findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(maximoTemporadas, avaliacao);
         System.out.println("Séries encontradas com " + maximoTemporadas + " temporadas e avaliação de " + avaliacao);
-        seriesEncontradas.forEach(s ->
-                System.out.println(s.getTitulo() + " | avaliação: " + avaliacao));
+        filtroSeries.forEach(s ->
+                System.out.println(s.getTitulo() + " | avaliação: " + s.getAvaliacao()));
     }
 }
