@@ -14,4 +14,6 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     // Buscar por ator e add mais um critério que é avaliaçao (maior ou igual a 8.8)
     List<Serie> findByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(String nomeAtor, Double avaliacao);
+
+    List<Serie> findTop5ByOrderByAvaliacaoDesc();
 }
