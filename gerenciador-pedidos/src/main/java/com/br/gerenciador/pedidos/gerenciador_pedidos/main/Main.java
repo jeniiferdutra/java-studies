@@ -6,6 +6,7 @@ import com.br.gerenciador.pedidos.gerenciador_pedidos.model.Produto;
 import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.CategoriaRepository;
 import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.PedidoRepository;
 import com.br.gerenciador.pedidos.gerenciador_pedidos.repository.ProdutoRepository;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -135,9 +136,30 @@ public class Main {
     }
 
     private void buscarProdutosPorCategoriaOrdenadosPorPrecoDecrescente() {
+        System.out.println("Digite o nome da respectiva categoria:");
+        var nomeCategoria = leitura.nextLine();
+        List<Produto> produtosOrdenados = produtoRepository.findByCategoriaNomeIgnoreCaseOrderByPrecoDesc(nomeCategoria);
+
+        System.out.println("Produtos da categoria '" + nomeCategoria + "' (Do mais caro ao mais barato):");
+        if (produtosOrdenados.isEmpty()) {
+            System.out.println("Nenhum produto encontrado para essa categoria.");
+        } else {
+            produtosOrdenados.forEach(c ->
+                    System.out.println(c.getNome() + " | Preço: R$ " + c.getPreco()));
+        }
     }
 
     private void contarProdutosPorCategoria() {
+        System.out.println("Digite o nome da categoria para contar os produtos:");
+        var nomeCategoria = leitura.nextLine();
+        long totalProdutos = produtoRepository.countByCategoriaNomeIgnoreCase(nomeCategoria);
+
+        System.out.println("Resultado da contagem:");
+        if (totalProdutos == 0) {
+            System.out.println("A categoria '" + nomeCategoria + "' não possui nenhum produto cadastrado ou não existe.");
+        } else {
+            System.out.println("A categoria '" + nomeCategoria + "' possui um total de " + totalProdutos + " produto(s).");
+        }
     }
 
 }

@@ -28,7 +28,6 @@ public class GerenciadorPedidosApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Main main = new Main(produtoRepository, categoriaRepository, pedidoRepository);
-		//main.salvarDados();
 		main.exibeMenu();
 	}
 }
