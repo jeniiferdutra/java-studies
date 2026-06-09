@@ -92,7 +92,7 @@ public class Main {
     private void buscarProdutosPorNomeDaCategoria() {
         System.out.println("Digite uma categoria:");
         var categoria = leitura.nextLine();
-        List<Categoria> categorias = categoriaRepository.findByNomeIgnoreCase(categoria);
+        Optional<Categoria> categorias = categoriaRepository.findByNomeIgnoreCase(categoria);
         System.out.println("Resultado da pesquisa:");
         if (categorias.isPresent()) {
             // Se achou a categoria, pega a lista de produtos de dentro dela!
@@ -102,7 +102,6 @@ public class Main {
         } else {
             System.out.println("Categoria não encontrada.");
         }
-
     }
 
     private void buscarProdutosComPrecoMaiorQue() {

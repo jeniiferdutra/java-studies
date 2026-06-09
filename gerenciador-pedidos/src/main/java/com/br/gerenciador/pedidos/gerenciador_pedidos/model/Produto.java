@@ -25,6 +25,10 @@ public class Produto {
         this.preco = preco;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
     public Long getId() {
         return id;
     }

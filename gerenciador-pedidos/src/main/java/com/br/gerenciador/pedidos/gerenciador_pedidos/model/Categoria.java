@@ -30,6 +30,10 @@ public class Categoria {
         this.produtos = produtos;
     }
 
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
     public Long getId() {
         return id;
     }
