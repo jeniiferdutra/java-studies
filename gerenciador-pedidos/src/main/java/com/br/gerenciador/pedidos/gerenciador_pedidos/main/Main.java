@@ -140,7 +140,8 @@ public class Main {
     private void buscarProdutosPorCategoriaOrdenadosPorPrecoDecrescente() {
         System.out.println("Digite o nome da respectiva categoria:");
         var nomeCategoria = leitura.nextLine();
-        List<Produto> produtosOrdenados = produtoRepository.findByCategoriaNomeIgnoreCaseOrderByPrecoDesc(nomeCategoria);
+        //List<Produto> produtosOrdenados = produtoRepository.findByCategoriaNomeIgnoreCaseOrderByPrecoDesc(nomeCategoria);
+        List<Produto> produtosOrdenados = produtoRepository.buscarOrdenadoPorNomeDesc(nomeCategoria);
 
         System.out.println("Produtos da categoria '" + nomeCategoria + "' (Do mais caro ao mais barato):");
         if (produtosOrdenados.isEmpty()) {

@@ -27,4 +27,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     @Query("SELECT p FROM Produto p ORDER BY p.preco ASC")
     List<Produto> buscarOrdenadoPorPrecoAsc(String nomeCategoria);
+
+    @Query("SELECT p FROM Produto p ORDER BY p.nome DESC")
+    List<Produto> buscarOrdenadoPorNomeDesc(String nomeCategoria);
 }
