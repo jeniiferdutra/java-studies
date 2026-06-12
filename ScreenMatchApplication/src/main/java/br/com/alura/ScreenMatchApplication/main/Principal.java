@@ -54,7 +54,8 @@ public class Principal {
                     """;
 
             System.out.println(menu);
-            opcao = Integer.parseInt(leitura.nextLine());
+            opcao = leitura.nextInt();
+            leitura.nextLine();
 
             switch (opcao) {
                 case 1:

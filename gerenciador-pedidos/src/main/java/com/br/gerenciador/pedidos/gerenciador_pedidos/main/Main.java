@@ -105,7 +105,8 @@ public class Main {
         System.out.println("Digite um valor:");
         var valor = leitura.nextDouble();
         leitura.nextLine();
-        List<Produto> filtroValor = produtoRepository.findByPrecoGreaterThan(valor);
+        //List<Produto> filtroValor = produtoRepository.findByPrecoGreaterThan(valor);
+        List<Produto> filtroValor = produtoRepository.buscarPorPrecoMaior(valor); // JPQL
         System.out.println("Produtos achados a partir desse valor:");
         filtroValor.forEach(p ->
                 System.out.println(p.getNome() + " | Preço: R$ " + p.getPreco()));
@@ -124,7 +125,8 @@ public class Main {
     private void buscarProdutosPorCategoriaOrdenadosPorPrecoCrescente() {
         System.out.println("Digite o nome da respectiva categoria:");
         var nomeCategoria = leitura.nextLine();
-        List<Produto> produtosOrdenados = produtoRepository.findByCategoriaNomeIgnoreCaseOrderByPrecoAsc(nomeCategoria);
+        //List<Produto> produtosOrdenados = produtoRepository.findByCategoriaNomeIgnoreCaseOrderByPrecoAsc(nomeCategoria);
+        List<Produto> produtosOrdenados = produtoRepository.buscarOrdenadoPorPrecoAsc(nomeCategoria);
 
         System.out.println("Produtos da categoria '" + nomeCategoria + "' (Do mais barato ao mais caro):");
         if (produtosOrdenados.isEmpty()) {
