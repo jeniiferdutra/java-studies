@@ -5,7 +5,6 @@ import com.jenifer.alura_musica.model.Musica;
 import com.jenifer.alura_musica.model.TipoArtista;
 import com.jenifer.alura_musica.repository.ArtistaRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -49,11 +48,8 @@ public class Main {
                 case 4:
                     buscarMusicasPorArtista();
                     break;
-                case 5:
-                    dadosSobreUmArtista();
-                    break;
                 default:
-                    System.out.println("Opcao inválida");
+                    System.out.println("Saindo...");
             }
         }
     }
@@ -72,7 +68,6 @@ public class Main {
             System.out.println("Cadastrar novo artista? (S/N)");
             cadastrarNovo = leitura.nextLine();
         }
-
     }
 
     private void cadastrarMusica() {
@@ -89,20 +84,17 @@ public class Main {
         } else {
             System.out.println("Artista não encontrado");
         }
-        
     }
 
     private void listarMusicas() {
         List<Artista> artistas = repository.findAll();
-        artistas.forEach(System.out::println);
+        artistas.forEach(a -> a.getMusicas().forEach(System.out::println));
     }
 
     private void buscarMusicasPorArtista() {
-        
+        System.out.println("Buscar músicas de que artista?");
+        var nome = leitura.nextLine();
+        List<Musica> musicas = repository.buscaMusicasPorArtista(nome);
+        musicas.forEach(System.out::println);
     }
-
-    private void dadosSobreUmArtista() {
-    }
-
-
 }
