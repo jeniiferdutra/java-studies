@@ -22,7 +22,11 @@ public final class Artista {
     @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Musica> musicas = new ArrayList<>();
 
-    private Artista() {
+    public Artista(){}
+
+    public Artista(String nomeArtista, TipoArtista tipo) {
+        this.nomeArtista = nomeArtista;
+        this.tipo = tipo;
     }
 
     public Long getId() {
