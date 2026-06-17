@@ -11,20 +11,8 @@ public class Musica {
 
     private String nomeMusica;
 
-    private String album;
-
-    private String nomeArtista;
-
     @ManyToOne
     private Artista artista;
-
-    public Musica(){}
-
-    public Musica(String nomeMusica, String album, String nomeArtista) {
-        this.nomeMusica = nomeMusica;
-        this.album = album;
-        this.nomeArtista = nomeArtista;
-    }
 
     public Long getId() {
         return id;
@@ -34,22 +22,25 @@ public class Musica {
         return nomeMusica;
     }
 
-    public String getAlbum() {
-        return album;
-    }
-
-    public String getNomeArtista() {
-        return nomeArtista;
-    }
-
     public Artista getArtista() {
         return artista;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNomeMusica(String nomeMusica) {
+        this.nomeMusica = nomeMusica;
+    }
+
+    public void setArtista(Artista artista) {
+        this.artista = artista;
     }
 
     @Override
     public String toString() {
         return "Música:'" + nomeMusica + '\'' +
-                ", álbum:'" + album + '\'' +
-                ", artista:'" + nomeArtista + '\'';
+                ", artista:'" + artista;
     }
 }

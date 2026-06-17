@@ -2,38 +2,66 @@ package com.jenifer.alura_musica.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "artistas")
 public final class Artista {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String nomeArtista;
 
-    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private TipoArtista tipo;
 
-    private List<Musica> musica;
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Musica> musicas = new ArrayList<>();
 
     private Artista() {
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return obj == this || obj != null && obj.getClass() == this.getClass();
+    public Long getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        return 1;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNomeArtista() {
+        return nomeArtista;
+    }
+
+    public void setNomeArtista(String nomeArtista) {
+        this.nomeArtista = nomeArtista;
+    }
+
+    public TipoArtista getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoArtista tipo) {
+        this.tipo = tipo;
+    }
+
+    public List<Musica> getMusicas() {
+        return musicas;
+    }
+
+    public void setMusicas(List<Musica> musicas) {
+        this.musicas = musicas;
     }
 
     @Override
     public String toString() {
-        return "Artista[]";
+        return
+                ", Artista='" + nomeArtista + '\'' +
+                ", tipo=" + tipo +
+                ", musicas=" + musicas;
     }
-
-
 }
