@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1de7138a-113d-417d-ac2f-38b658905b80" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/ScreenMatchApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/main/Principal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/model/Categoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/model/DadosEpisodio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/model/DadosSerie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/model/DadosTemporada.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/model/Episodio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/model/Serie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/repository/SerieRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/service/ConsultaChatGPT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/service/ConsumoAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/service/ConverteDados.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/alura/ScreenMatchApplication/service/IConverteDados.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/br/com/alura/ScreenMatchApplication/ScreenMatchApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/src/main/java/com/jenifer/alura_musica/AluraMusicaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/src/main/java/com/jenifer/alura_musica/main/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/src/main/java/com/jenifer/alura_musica/model/Artista.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/src/main/java/com/jenifer/alura_musica/model/DadosMusica.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/src/main/java/com/jenifer/alura_musica/model/Musica.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/src/main/java/com/jenifer/alura_musica/model/TipoArtista.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/src/main/java/com/jenifer/alura_musica/repository/ArtistaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alura-musica/src/test/java/com/jenifer/alura_musica/AluraMusicaApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Record" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3D3YDr9rqqkPUSKCK0SugRIFJUK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ScreenMatchApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/desenvolvimento-api-rest&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/macbookair/Desktop/java-studies/ScreenMatchApplication&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="br.com.alura.ScreenMatchApplication.model" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="ScreenMatchApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="ScreenMatchApplication" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1de7138a-113d-417d-ac2f-38b658905b80" name="Changes" comment="" />
+      <created>1777512104059</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1777512104059</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:io.reactivex.rxjava2:rxjava" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:javax.validation:validation-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+  </component>
+</project>

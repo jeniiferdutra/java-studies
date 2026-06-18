@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="conteudos">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/conteudos/screenmatch02.zip!/" />
+      <root url="jar://$PROJECT_DIR$/conteudos/gerenciador-pedidos.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
